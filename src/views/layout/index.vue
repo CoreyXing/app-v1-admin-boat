@@ -3,7 +3,7 @@
     <!-- 头部区域 -->
     <el-header>
       <!-- 左侧的 logo -->
-      <img src="../../assets/images/logo.png" alt="" />
+      <img src="../../assets/images/login_title.png" alt="" />
       <!-- 右侧的菜单 -->
       <el-menu
         class="el-menu-top"
@@ -15,7 +15,7 @@
         <el-submenu index="1">
           <template slot="title">
             <!-- 头像 -->
-            <img src="../../assets/images/logo.png" alt="" class="avatar" />
+            <img src="../../assets/images/login_title.png" alt="" class="avatar" />
             <span>个人中心</span>
           </template>
           <el-menu-item index="1-1"><i class="el-icon-s-operation"></i>基本资料</el-menu-item>
