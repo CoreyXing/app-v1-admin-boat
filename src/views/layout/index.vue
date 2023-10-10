@@ -27,7 +27,10 @@
     </el-header>
     <el-container>
       <!-- 侧边栏区域 -->
-      <el-aside width="200px">Aside</el-aside>
+      <el-aside width="200px">
+        <!-- 导航栏 -->
+          <TypeNav/>
+      </el-aside>
       <el-container>
         <!-- 页面主体区域 -->
         <el-main>
@@ -41,8 +44,13 @@
 </template>
 
 <script>
+import TypeNav from '../../components/TypeNav'
+
 export default {
   name: 'my-layout',
+  components: {
+    TypeNav
+  },
   methods: {
     logoutFn () {
       // 询问用户是否退出登录
