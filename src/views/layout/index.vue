@@ -3,7 +3,7 @@
     <!-- 头部区域 -->
     <el-header>
       <!-- 左侧的 logo -->
-      <img src="../../assets/images/logo.png" alt="" />
+      <img src="../../assets/images/login_title.png" alt="" />
       <!-- 右侧的菜单 -->
       <el-menu
         class="el-menu-top"
@@ -15,7 +15,7 @@
         <el-submenu index="1">
           <template slot="title">
             <!-- 头像 -->
-            <img src="../../assets/images/logo.png" alt="" class="avatar" />
+            <img src="../../assets/images/login_title.png" alt="" class="avatar" />
             <span>个人中心</span>
           </template>
           <el-menu-item index="1-1"><i class="el-icon-s-operation"></i>基本资料</el-menu-item>
@@ -27,11 +27,14 @@
     </el-header>
     <el-container>
       <!-- 侧边栏区域 -->
-      <el-aside width="200px">Aside</el-aside>
+      <el-aside width="200px">
+        <!-- 导航栏 -->
+          <TypeNav/>
+      </el-aside>
       <el-container>
         <!-- 页面主体区域 -->
         <el-main>
-          Main.vue后台主页
+          <router-view></router-view>
         </el-main>
         <!-- 底部 footer 区域 -->
         <el-footer>© 赛艇数据分析平台</el-footer>
@@ -41,8 +44,13 @@
 </template>
 
 <script>
+import TypeNav from '@/components/TypeNav'
+
 export default {
   name: 'my-layout',
+  components: {
+    TypeNav
+  },
   methods: {
     logoutFn () {
       // 询问用户是否退出登录
