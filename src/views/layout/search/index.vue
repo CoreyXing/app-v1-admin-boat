@@ -17,37 +17,23 @@
         <div v-for="o in 2" :key="o" class="text item">
           {{'列表内容 ' + o }}
           <el-row>
-            <el-col :span="4" v-for="(item, index) in 4" :key="item" :offset="index > 0 ? 2 : 0">
-              <el-card id="foodCard" :body-style="{ padding: '0px' }" shadow="hover">
-                <i class="el-icon-grape"></i>
+            <el-col :span="2" v-for="(i, index) in 6" :key="i" :offset="index > 0 ? 2 : 0">
+              <el-card
+                id="foodCard" 
+                :body-style="{ padding: '0px' }" 
+                shadow="hover"
+                @click.native="clickCard(i)">
                 <div style="padding: 14px;">
+                  <i class="el-icon-grape"></i></br>
                   <span>好吃的汉堡</span>
                 </div>
               </el-card>
             </el-col>
           </el-row>
         </div>
+        <img style="max-width: 100%; height:auto;" src="@/assets/images/food.jpg"/>
       </el-card>
     </div>
-    <div id="bottomContent">
-      <el-card class="box-card" shadow="never">
-        展示搜索内容
-        <div v-for="o in 2" :key="o" class="text item">
-          {{'列表内容 ' + o }}
-          <el-row>
-            <el-col :span="4" v-for="(item, index) in 4" :key="item" :offset="index > 0 ? 2 : 0">
-              <el-card id="foodCard" :body-style="{ padding: '0px' }" shadow="hover">
-                <i class="el-icon-grape"></i>
-                <div style="padding: 14px;">
-                  <span>好吃的汉堡</span>
-                </div>
-              </el-card>
-            </el-col>
-          </el-row>
-        </div>
-      </el-card>
-    </div>
-    <div></div>
   </div>
 </template>
 
@@ -74,6 +60,14 @@ export default {
       }],
       value: ''
     }
+  },
+  methods: {
+    // 点击卡片触发的事件, 如果点击跳出详情
+    clickCard(i) {
+      console.log("点击item",i);
+      this.$router.push({name : "detail"})
+      // 如果点击到具体的食物 跳转到具体的页面详情
+    }
   }
 }
 </script>
@@ -85,8 +79,12 @@ export default {
 
   .item {
     margin-bottom: 14px;
-    .foodCard {
-      width:20px;
+    #foodCard {
+      width:120px;
+      height: 80px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
   }
 
@@ -105,16 +103,9 @@ export default {
   }
 
   #topContent {
-    margin-bottom: 20px;
     .box-card {
-      height: 300px;  
-    }
-  }
-
-  #bottomConten {
-    .box-card {
-      width: 1200px; 
-      height: 200px; 
+      // background-image: url('@/assets/images/food.jpg');
+      height: 100%;  
     }
   }
 </style>

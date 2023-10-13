@@ -2,9 +2,9 @@
   <el-menu
     default-active="2"
     class="el-menu-vertical-demo"
-    background-color="#23262e"
-    text-color="#fff"
-    active-text-color="#ffd04b"
+    background-color="#304156"
+    text-color="#BFCBD9"
+    active-text-color="#409eff"
     @select="handleSelect"
     @close="handleClose">
     <el-menu-item index="search">
@@ -37,7 +37,6 @@ export default {
       console.log(key, keyPath)
     },
     handleSelect (index, keyPath) {
-      console.log(index, keyPath)
       this.$router.push({ name: index })
     }
   }

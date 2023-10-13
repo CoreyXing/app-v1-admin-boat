@@ -8,7 +8,7 @@
       <el-menu
         class="el-menu-top"
         mode="horizontal"
-        background-color="#23262E"
+        background-color="#304156"
         text-color="#fff"
         active-text-color="#409EFF"
       >
@@ -75,13 +75,13 @@ export default {
 <style lang="less" scoped>
 .main-container {
   height: 100%;
-  .el-header,
   .el-aside {
-    background-color: #23262e;
+    background-color: #304156;
   }
   .el-header {
     padding: 0;
     display: flex;
+    background-color: #304156;
     justify-content: space-between;
   }
   .el-main {

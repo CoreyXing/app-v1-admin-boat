@@ -15,7 +15,7 @@ export default [
       {
         path: '/search',
         name: 'search',
-        component: () => import('@/views/layout/search')
+        component: () => import('@/views/layout/search'),
       },
       {
         path: '/plate',
@@ -31,7 +31,17 @@ export default [
         path: '/knowledge',
         name: 'knowledge',
         component: () => import('@/views/layout/knowledge')
-      }
+      },
+      {
+        path: '/detail',
+        name: 'detail',
+        component: () => import('@/views/layout/detail')
+      },
+      {
+        path: '/detailFood',
+        name: 'detailFood',
+        component: () => import('@/views/layout/detail/detailFood')
+      },
     ]
   },
 ]

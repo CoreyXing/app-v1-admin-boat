@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: "knowledge",
+  name: "detailFood",
 }
 </script>
 
