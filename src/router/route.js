@@ -38,9 +38,9 @@ export default [
         component: () => import('@/views/layout/detail')
       },
       {
-        path: '/detailFood',
-        name: 'detailFood',
-        component: () => import('@/views/layout/detail/detailFood')
+        path: '/category',
+        name: 'category',
+        component: () => import('@/views/layout/detail/category')
       },
     ]
   },

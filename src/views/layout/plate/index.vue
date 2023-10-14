@@ -4,34 +4,109 @@
     <div id="topContent">
       <el-card class="box-card" shadow="never">
         <div slot="header" class="clearfix">
-          <div v-for="i in 4" :key="i" style="margin-right:30px;" >
-            <el-select v-model="value" filterable placeholder="请选择">
-              <el-option
-                v-for="item in options"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value">
-              </el-option>
-            </el-select>
-          </div>
-          <el-button style="float: right; margin-left: 0.25rem;" type="primary" icon="el-icon-search">搜索</el-button>
+        根据您每餐的摄入情况，单击或者拖动食物到餐盘里，点击算一算按钮查看计算结果：
         </div>
-        <div v-for="o in 2" :key="o" class="text item">
-          {{'列表内容 ' + o }}
-          <el-row>
-            <el-col :span="4" v-for="(item, index) in 4" :key="item" :offset="index > 0 ? 2 : 0">
-              <el-card id="foodCard" :body-style="{ padding: '0px' }" shadow="hover">
-                <i class="el-icon-grape"></i>
-                <div style="padding: 14px;">
-                  <span>好吃的汉堡</span>
-                </div>
-              </el-card>
+        <div>
+          <el-row class="row">
+            <el-col :span="8">
+                半荤菜：<el-select v-model="value" filterable placeholder="请选择">
+                <el-option
+                  v-for="item in options"
+                  :key="item.value"
+                  :label="item.label"
+                  :value="item.value">
+                </el-option>
+              </el-select>
+            </el-col>
+            <el-col :span="8">
+                根基素菜：<el-select v-model="value" filterable placeholder="请选择">
+                <el-option
+                  v-for="item in options"
+                  :key="item.value"
+                  :label="item.label"
+                  :value="item.value">
+                </el-option>
+              </el-select>
+            </el-col>
+            <el-col :span="8">
+                主食：<el-select v-model="value" filterable placeholder="请选择">
+                <el-option
+                  v-for="item in options"
+                  :key="item.value"
+                  :label="item.label"
+                  :value="item.value">
+                </el-option>
+              </el-select>
+            </el-col>
+          </el-row>
+          <el-row class="row">
+            <el-col :span="8">
+                纯肉菜：<el-select v-model="value" filterable placeholder="请选择">
+                <el-option
+                  v-for="item in options"
+                  :key="item.value"
+                  :label="item.label"
+                  :value="item.value">
+                </el-option>
+              </el-select>
+            </el-col>
+            <el-col :span="8">
+                花叶素菜：<el-select v-model="value" filterable placeholder="请选择">
+                <el-option
+                  v-for="item in options"
+                  :key="item.value"
+                  :label="item.label"
+                  :value="item.value">
+                </el-option>
+              </el-select>
+            </el-col>
+            <el-col :span="8">
+                水果：<el-select v-model="value" filterable placeholder="请选择">
+                <el-option
+                  v-for="item in options"
+                  :key="item.value"
+                  :label="item.label"
+                  :value="item.value">
+                </el-option>
+              </el-select>
+            </el-col>
+          </el-row>
+          <el-row class="row">
+            <el-col :span="8">
+                奶制品：<el-select v-model="value" filterable placeholder="请选择">
+                <el-option
+                  v-for="item in options"
+                  :key="item.value"
+                  :label="item.label"
+                  :value="item.value">
+                </el-option>
+              </el-select>
+            </el-col>
+            <el-col :span="8">
+              <el-button type="primary">算一算</el-button>
             </el-col>
           </el-row>
         </div>
       </el-card>
     </div>
-    <!-- 结果展示区域 看怎么做才好 -->
+    <!-- 结果展示区域 看怎么做才好 左边为餐盘 右边为显示的结果-->
+    <div id="bottomContent">
+      <div id="left">
+        <el-card class="box-card">
+          存放选择的结果
+          <img src="@/assets/images/plate.jpg"/>
+        </el-card>
+      </div>
+      <div id="right">
+        <el-card class="box-card">
+          存放搜索的结果<br/>
+          热量：...<br/>
+          营养成分：...<br/>
+          需要怎么消耗掉：....等等信息。<br/>
+          具体信息待考察
+        </el-card>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -62,17 +137,10 @@ export default {
 }
 </script>
 
-<style>
-  .text {
-    font-size: 14px;
-  }
-
-  .item {
-    margin-bottom: 14px;
-  }
-
+<style lang="less" scoped>
   .clearfix {
     display: flex;
+    align-items: center;
   }
 
   .clearfix:before,
@@ -83,5 +151,20 @@ export default {
   .clearfix:after {
     clear: both
   }
-
+  #topContent {
+    width: 100%;
+    .row {
+      margin-bottom: 10px;
+    }
+  }
+  #bottomContent {
+    display: flex;
+    justify-content: space-between;
+    .box-card {
+      font-size: 16px;
+      margin-top: 20px;
+      width: 550px;
+      height: 300px;
+    }
+  }
 </style>

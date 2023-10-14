@@ -12,7 +12,7 @@
               :value="item.value">
             </el-option>
           </el-select>
-          <el-button style="float: right; margin-left: 0.25rem;" type="primary" icon="el-icon-search">搜索</el-button>
+          <el-button @click="search" style="float: right; margin-left: 0.25rem;" type="primary" icon="el-icon-search">搜索</el-button>
         </div>
         <div v-for="o in 2" :key="o" class="text item">
           {{'列表内容 ' + o }}
@@ -24,7 +24,7 @@
                 shadow="hover"
                 @click.native="clickCard(i)">
                 <div style="padding: 14px;">
-                  <i class="el-icon-grape"></i></br>
+                  <i class="el-icon-grape"></i><br/>
                   <span>好吃的汉堡</span>
                 </div>
               </el-card>
@@ -62,10 +62,15 @@ export default {
     }
   },
   methods: {
-    // 点击卡片触发的事件, 如果点击跳出详情
+    // 根据输入的内容，点击搜索出现具体的食物
+    search() {
+      console.log('点击了搜索');
+      this.$router.push({name: "detail"});
+    },
+    // 点击卡片触发的事件, 如果点击跳出具体分类的食物
     clickCard(i) {
       console.log("点击item",i);
-      this.$router.push({name : "detail"})
+      this.$router.push({name : "category"})
       // 如果点击到具体的食物 跳转到具体的页面详情
     }
   }
