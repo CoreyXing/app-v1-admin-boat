@@ -1,5 +1,5 @@
 <template>
-  <el-menu
+  <el-menu :router='true'
     default-active="2"
     class="el-menu-vertical-demo"
     background-color="#304156"
@@ -15,10 +15,20 @@
       <i class="el-icon-document"></i>
       <span slot="title">餐盘计算</span>
     </el-menu-item>
-    <el-menu-item index="weight">
-      <i class="el-icon-setting"></i>
-      <span slot="title">体重转换</span>
-    </el-menu-item>
+    <el-submenu index="weight">
+        <template slot="title">
+          <i class="el-icon-setting"></i>
+          <span>体重管理</span>
+        </template>
+        <!-- <el-menu-item-group>
+          <el-menu-item index="1-1">非赛季</el-menu-item>
+          <el-menu-item index="1-2">赛季</el-menu-item>
+        </el-menu-item-group> -->
+        <el-menu-item index="inseason">
+          <i class="el-icon-dish"></i>非赛季</el-menu-item>
+        <el-menu-item index="noseason">
+          <i class="el-icon-dish-1"></i>赛季</el-menu-item>
+      </el-submenu>
     <el-menu-item index="knowledge">
       <i class="el-icon-setting"></i>
       <span slot="title">知识图谱展示</span>

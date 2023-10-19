@@ -15,17 +15,39 @@ export default [
       {
         path: '/search',
         name: 'search',
-        component: () => import('@/views/layout/search'),
+        component: () => import('@/views/layout/search')
       },
       {
         path: '/plate',
         name: 'plate',
         component: () => import('@/views/layout/plate')
       },
+      // {
+      //   path: '/weight',
+      //   redirect: '/weight/inseason',
+      //   name: 'weight',
+      //   children: [
+      //     {
+      //       path: 'inseason',
+      //       name: 'inseason',
+      //       component: () => import('@/views/layout/weight/inseason')
+      //     },
+      //     {
+      //       path: 'noseason',
+      //       name: 'noseason',
+      //       component: () => import('@/views/layout/weight/noseason')
+      //     }
+      //   ]
+      // },
       {
-        path: '/weight',
-        name: 'weight',
-        component: () => import('@/views/layout/weight')
+        path: '/inseason',
+        name: 'inseason',
+        component: () => import('@/views/layout/weight/inseason.vue')
+      },
+      {
+        path: '/noseason',
+        name: 'noseason',
+        component: () => import('@/views/layout/weight/noseason.vue')
       },
       {
         path: '/knowledge',
@@ -41,7 +63,7 @@ export default [
         path: '/category',
         name: 'category',
         component: () => import('@/views/layout/detail/category')
-      },
+      }
     ]
-  },
+  }
 ]

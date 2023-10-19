@@ -23,7 +23,7 @@ VueRouter.prototype.replace = function (location, resolve, reject) {
     // 这样的话调用原来的push方法
     originReplace.call(this, location, resolve, reject)
   } else {
-    // 因为保存的时候 在window里面 所以要改变this指向 这里相当于 修改了一下原方法
+    // 因为保存的时候 在window里面 所以要改变this指向 这里相当于修改了一下原方法
     originReplace.call(this, location, () => {}, () => {})
   }
 }
