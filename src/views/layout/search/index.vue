@@ -1,10 +1,11 @@
 <template>
   <div>
     <!-- 主要分为两部分，一个搜索栏，一个显示的分类，一个结果，看能否在一个页面上实现 -->
-    <div id="topContent">
+        <!-- 主要分为两部分，一个搜索栏，一个显示的分类，一个结果，看能否在一个页面上实现 -->
+    <!-- <div id="topSearch">
       <el-card class="box-card" shadow="never">
-        <div slot="header" class="clearfix">
-          <el-select style="width:800px;"  v-model="value" filterable placeholder="请选择">
+        <div class="clearfix">
+          <el-select style="width:800px;"  v-model="value" clearable filterable placeholder="请输入食品名称">
             <el-option
               v-for="item in options"
               :key="item.value"
@@ -14,18 +15,31 @@
           </el-select>
           <el-button @click="search" style="float: right; margin-left: 0.25rem;" type="primary" icon="el-icon-search">搜索</el-button>
         </div>
+      </el-card>
+    </div> -->
+    <div id="topContent">
+      <el-card class="box-card" shadow="never">
+        <div slot="header" class="clearfix">
+          <el-input
+            style="width:800px;"
+            placeholder="请输入内容"
+            v-model="input"
+            clearable>
+          </el-input>
+          <el-button @click="search" style="float: right; margin-left: 0.25rem;" type="primary" icon="el-icon-search">搜索</el-button>
+        </div>
         <div v-for="o in 2" :key="o" class="text item">
           {{'列表内容 ' + o }}
           <el-row>
             <el-col :span="2" v-for="(i, index) in 6" :key="i" :offset="index > 0 ? 2 : 0">
               <el-card
                 id="foodCard" 
-                :body-style="{ padding: '0px' }" 
+                :body-style="{ padding: '0px'}" 
                 shadow="hover"
                 @click.native="clickCard(i)">
                 <div style="padding: 14px;">
                   <i class="el-icon-grape"></i><br/>
-                  <span>好吃的汉堡</span>
+                  <span>谷类</span>
                 </div>
               </el-card>
             </el-col>
@@ -42,21 +56,22 @@ export default {
   name: "search",
   data() {
     return {
+      input: '',
       options: [{
         value: '选项1',
-        label: '黄金糕'
+        label: '谷类'
       }, {
         value: '选项2',
-        label: '双皮奶'
+        label: '薯类'
       }, {
         value: '选项3',
-        label: '蚵仔煎'
+        label: '豆类'
       }, {
         value: '选项4',
-        label: '龙须面'
+        label: '蔬菜'
       }, {
         value: '选项5',
-        label: '北京烤鸭'
+        label: '菌类'
       }],
       value: ''
     }
@@ -90,6 +105,13 @@ export default {
       display: flex;
       justify-content: center;
       align-items: center;
+      div {
+        text-align: center;
+        i {
+          color: purple;
+        }
+      }
+      
     }
   }
 
@@ -107,10 +129,11 @@ export default {
     clear: both
   }
 
-  #topContent {
+  #topSearch {
     .box-card {
       // background-image: url('@/assets/images/food.jpg');
-      height: 100%;  
+      height: 100%;
+      margin-bottom: 10px;  
     }
   }
 </style>

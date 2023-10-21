@@ -3,7 +3,8 @@
     <!-- 头部区域 -->
     <el-header>
       <!-- 左侧的 logo -->
-      <img src="../../assets/images/login_title.png" alt="" />
+      <!-- <img src="../../assets/images/login_title.png" alt="" /> -->
+      <h1 style="color:#fff;margin-left:20px;">饮食图谱系统</h1>
       <!-- 右侧的菜单 -->
       <el-menu
         class="el-menu-top"

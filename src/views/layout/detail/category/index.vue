@@ -10,7 +10,7 @@
     <el-card>
       <el-collapse v-model="activeNames" @change="handleChange">
         <el-collapse-item title="小麦" Consistency name="1">
-          <div v-for="(item, index) in 4" :key="index">
+          <div v-for="(item, index) in 1" :key="index">
             <el-row style="margin-left:50px;">
               <!-- 这里用link有问题，等到后续再修改吧，根据接口修改一下 -->
               <el-col :span="4" class="lightgreen-box"><el-link>小麦粉</el-link></el-col>

@@ -9,7 +9,7 @@
         <div>
           <el-row class="row">
             <el-col :span="8">
-                半荤菜：<el-select v-model="value" filterable placeholder="请选择">
+                半荤菜：<el-select v-model="value" clearable filterable placeholder="请选择">
                 <el-option
                   v-for="item in options"
                   :key="item.value"
@@ -19,7 +19,7 @@
               </el-select>
             </el-col>
             <el-col :span="8">
-                根基素菜：<el-select v-model="value" filterable placeholder="请选择">
+                根基素菜：<el-select v-model="value" clearable filterable placeholder="请选择">
                 <el-option
                   v-for="item in options"
                   :key="item.value"
@@ -29,39 +29,7 @@
               </el-select>
             </el-col>
             <el-col :span="8">
-                主食：<el-select v-model="value" filterable placeholder="请选择">
-                <el-option
-                  v-for="item in options"
-                  :key="item.value"
-                  :label="item.label"
-                  :value="item.value">
-                </el-option>
-              </el-select>
-            </el-col>
-          </el-row>
-          <el-row class="row">
-            <el-col :span="8">
-                纯肉菜：<el-select v-model="value" filterable placeholder="请选择">
-                <el-option
-                  v-for="item in options"
-                  :key="item.value"
-                  :label="item.label"
-                  :value="item.value">
-                </el-option>
-              </el-select>
-            </el-col>
-            <el-col :span="8">
-                花叶素菜：<el-select v-model="value" filterable placeholder="请选择">
-                <el-option
-                  v-for="item in options"
-                  :key="item.value"
-                  :label="item.label"
-                  :value="item.value">
-                </el-option>
-              </el-select>
-            </el-col>
-            <el-col :span="8">
-                水果：<el-select v-model="value" filterable placeholder="请选择">
+                主食：<el-select v-model="value" clearable filterable placeholder="请选择">
                 <el-option
                   v-for="item in options"
                   :key="item.value"
@@ -73,7 +41,39 @@
           </el-row>
           <el-row class="row">
             <el-col :span="8">
-                奶制品：<el-select v-model="value" filterable placeholder="请选择">
+                纯肉菜：<el-select v-model="value" clearable filterable placeholder="请选择">
+                <el-option
+                  v-for="item in options"
+                  :key="item.value"
+                  :label="item.label"
+                  :value="item.value">
+                </el-option>
+              </el-select>
+            </el-col>
+            <el-col :span="8">
+                花叶素菜：<el-select v-model="value" clearable filterable placeholder="请选择">
+                <el-option
+                  v-for="item in options"
+                  :key="item.value"
+                  :label="item.label"
+                  :value="item.value">
+                </el-option>
+              </el-select>
+            </el-col>
+            <el-col :span="8">
+                水果：<el-select v-model="value" clearable filterable placeholder="请选择">
+                <el-option
+                  v-for="item in options"
+                  :key="item.value"
+                  :label="item.label"
+                  :value="item.value">
+                </el-option>
+              </el-select>
+            </el-col>
+          </el-row>
+          <el-row class="row">
+            <el-col :span="8">
+                奶制品：<el-select v-model="value" clearable filterable placeholder="请选择">
                 <el-option
                   v-for="item in options"
                   :key="item.value"
@@ -117,19 +117,31 @@ export default {
     return {
       options: [{
         value: '选项1',
-        label: '黄金糕'
+        label: '白菜炖豆腐'
       }, {
         value: '选项2',
-        label: '双皮奶'
+        label: '醋溜白菜'
       }, {
         value: '选项3',
-        label: '蚵仔煎'
+        label: '蒜蓉油麦菜'
       }, {
         value: '选项4',
-        label: '龙须面'
+        label: '炒小白菜'
       }, {
         value: '选项5',
-        label: '北京烤鸭'
+        label: '清炒芥菜'
+      },{
+        value: '选项6',
+        label: '鸡蛋炒菠菜'
+      },{
+        value: '选项7',
+        label: '韭菜炒鸡蛋'
+      },{
+        value: '选项8',
+        label: '炝炒圆白菜'
+      },{
+        value: '选项9',
+        label: '香椿炒鸡蛋'
       }],
       value: ''
     }

@@ -25,7 +25,7 @@ export default [
       {
         path: '/weight',
         name: 'weight',
-        component: () => import('@/views/layout/weight')
+        component: () => import('@/views/layout/weight'),
       },
       {
         path: '/knowledge',
@@ -36,6 +36,11 @@ export default [
         path: '/detail',
         name: 'detail',
         component: () => import('@/views/layout/detail')
+      },
+      {
+        path: '/detailFood',
+        name: 'detailFood',
+        component: () => import('@/views/layout/detail/detailTable'),
       },
       {
         path: '/category',

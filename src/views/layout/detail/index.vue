@@ -2,7 +2,21 @@
   <div>
     <el-page-header @back="goBack" content="小麦详情页面">
     </el-page-header>
+    <div id="topSearch">
+      <el-card class="box-card" shadow="never">
+        <div class="clearfix">
+          <el-input
+            style="width:800px;"
+            placeholder="请输入内容"
+            v-model="input"
+            clearable>
+          </el-input>
+          <el-button @click="search" style="float: right; margin-left: 0.25rem;" type="primary" icon="el-icon-search">搜索</el-button>
+        </div>
+      </el-card>
+    </div>
     <div id="parentCard">
+      
       <div v-for="(item, index) in 8" :key="index">
         <el-card class="box-card">       
             小麦：    <br/>
@@ -11,8 +25,11 @@
             蛋白质: 11.9 克,    <br/>
             脂肪:  1.3 克,    <br/>
             碳水化合物: 75.2 克
-          <el-button type="text" @click="dialogTableVisible = true">查看详细信息</el-button>
-          <el-dialog title="小麦粉的营养成分列表" :visible.sync="dialogTableVisible">
+          <el-button type="text" @click="clickDetail">查看详细信息</el-button>
+          <el-dialog
+            title="小麦粉的营养成分列表"
+            :visible.sync="dialogTableVisible"
+            center>
             <el-table :data="gridData">
               <el-table-column property="name" label="营养名称" width="150"></el-table-column>
               <el-table-column property="number" label="数值" width="200"></el-table-column>
@@ -30,6 +47,15 @@ export default {
   name: "detail",
   data(){
     return {
+      tableData: [{
+        name: '小麦',
+        effect: '子宫肌瘤,尖锐湿疣,跖疣',
+        nutrition: '千卡',
+        lipid: '',
+        mineral: '',
+        vitamin: '',
+        amino:'', 
+      }],
       gridData: [{
         name: '能量',
         number: '349',
@@ -52,6 +78,7 @@ export default {
         unit: '克'
       }],
       dialogTableVisible: false,
+      input:''
     }
   },
   methods:{
@@ -59,11 +86,13 @@ export default {
       console.log("输出index", index);
       // 这里跳转到具体页面，显示出详细信息
       // this.$router.push({name : "detailFood"})
+      this.$router.push({name:"detailTable"})
     },
     goBack() {
         console.log('go back');
         // 这里返回上一级的路由
         this.$router.go(-1);
+        
     }
   }
 }
@@ -91,6 +120,27 @@ export default {
       .el-button {
         float: right;
       }
+    }
+  }
+  .clearfix {
+    display: flex;
+    justify-content: center;
+  }
+
+  .clearfix:before,
+  .clearfix:after {
+    display: table;
+    content: "";
+  }
+  .clearfix:after {
+    clear: both
+  }
+
+  #topSearch {
+    .box-card {
+      // background-image: url('@/assets/images/food.jpg');
+      height: 100%;
+      margin:10px 0;  
     }
   }
 </style>

@@ -7,6 +7,8 @@
     active-text-color="#409eff"
     @select="handleSelect"
     @close="handleClose">
+    <!-- 这样存放index其实有个问题，如果一样的话，就难以区分，最好是索引，以后再改吧 -->
+
     <el-menu-item index="search">
       <i class="el-icon-menu"></i>
       <span slot="title">食物营养成分查询</span>
@@ -37,6 +39,7 @@ export default {
       console.log(key, keyPath)
     },
     handleSelect (index, keyPath) {
+      console.log(index)
       this.$router.push({ name: index })
     }
   }
