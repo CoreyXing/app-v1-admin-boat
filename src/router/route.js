@@ -23,9 +23,14 @@ export default [
         component: () => import('@/views/layout/plate')
       },
       {
-        path: '/weight',
-        name: 'weight',
-        component: () => import('@/views/layout/weight')
+        path: '/season',
+        name: 'season',
+        component: () => import('@/views/layout/weight/season')
+      },
+      {
+        path: '/noseason',
+        name: 'noseason',
+        component: () => import('@/views/layout/weight/noseason')
       },
       {
         path: '/knowledge',

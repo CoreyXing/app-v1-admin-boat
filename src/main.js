@@ -7,7 +7,7 @@ import App from './App.vue'
 import router from './router'
 import '@/assets/global.less' // 全局初始化样式
 import '@/elementUI' // 注册elementUI组件
-import store from './store'
+import store from './store' //挂载store实例
 
 Vue.config.productionTip = false
 
