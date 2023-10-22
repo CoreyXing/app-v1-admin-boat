@@ -33,7 +33,7 @@
         isRouter: true,
         menuData: [
           {
-            path:"/",
+            path:"/home",
             name:"home",
             label:'首页',
             icon: 's-home',
@@ -67,7 +67,13 @@
                 icon: 's-home',
               }
             ]
-          }
+          },
+           {
+            path:"/bigModel",
+            name:"bigModel",
+            label:'问答模式',
+            icon: 's-home',
+          },
         ]
       };
     },
