@@ -2,12 +2,15 @@
   <div>
       <el-container>
         <el-aside width="auto">
+          <!-- 侧边栏 -->
           <common-aside/>
         </el-aside>
         <el-container>
+          <!-- 顶部内部 -->
           <el-header>
             <common-header/>
           </el-header>
+          <!-- 内容主区域 -->
           <el-main>
             <router-view></router-view>
           </el-main>
