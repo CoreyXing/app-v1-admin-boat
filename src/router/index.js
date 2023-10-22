@@ -5,7 +5,7 @@ import routes from './route'
 
 Vue.use(VueRouter)
 
-// 重写路由方法
+// 重写路由方法 这里是解决重复点击路由不能跳转的问题， 但是vuerouter 有个新属性:router可以直接index跳转
 const originPush = VueRouter.prototype.push
 const originReplace = VueRouter.prototype.replace
 // 重写push|replace
