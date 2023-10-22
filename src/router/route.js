@@ -13,6 +13,11 @@ export default [
     component: () => import('@/views/layout'),
     children: [
       {
+        path: '/home',
+        name: 'home',
+        component: () => import('@/views/layout/home')
+      },
+      {
         path: '/search',
         name: 'search',
         component: () => import('@/views/layout/search')
@@ -36,6 +41,28 @@ export default [
         path: '/knowledge',
         name: 'knowledge',
         component: () => import('@/views/layout/knowledge')
+      },
+      {
+        path: '/bigModel',
+        name: 'bigModel',
+        component: () => import('@/views/layout/bigModel')
+      },
+      {
+        path: '/detail',
+        name: 'detail',
+        component: () => import('@/views/layout/detail'),
+        children: [
+          {
+            path: '/detail/detailBig',
+            name: 'detailBig',
+            component: () => import('@/views/layout/detail/detailBig'),
+          },
+          {
+            path: '/detail/detailSmall',
+            name: 'detailSmall',
+            component: () => import('@/views/layout/detail/detailSmall'),
+          },          
+        ]
       }
     ]
   },
