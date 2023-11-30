@@ -20,7 +20,14 @@ export default [
       {
         path: '/search',
         name: 'search',
-        component: () => import('@/views/layout/search')
+        component: () => import('@/views/layout/search'),
+        children: [
+          {
+            path: '/search/searchDetail',
+            name: 'searchDetail',
+            component: () => import('@/views/layout/search/searchDetail'),
+          }, 
+        ]
       },
       {
         path: '/plate',

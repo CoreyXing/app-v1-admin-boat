@@ -1,0 +1,30 @@
+[
+  {
+    "data":[
+      {
+        "id": "谷类",
+        "type": "first_level_food"
+    },
+    {
+        "id": " 小麦 ",
+        "type": "second_level_food"
+    },
+    {
+        "id": "小麦",
+        "type": "third_level_food"
+    },
+    {
+        "id": "子宫肌瘤",
+        "type": "effect"
+    },
+    {
+        "id": "尖锐湿疣",
+        "type": "effect"
+    }
+  ],
+  "linkData":[
+    {"source": "谷类", "target": "小麦", "name": "HasFirstSubFood"},
+    {"source": "小麦", "target": "子宫肌瘤", "name": "effect"},
+    {"source": "小麦", "target": "尖锐湿疣", "name": "effect"}
+  ]}
+]

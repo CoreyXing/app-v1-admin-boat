@@ -31,6 +31,7 @@
     data() {
       return {
         isRouter: true,
+        // 这样写可以用来进行权限管理 利用后台返回回来的对于权限的列表
         menuData: [
           {
             path:"/home",
@@ -39,32 +40,38 @@
             icon: 's-home',
           },
           {
+            path:"/knowledge",
+            name:"knowledge",
+            label:'知识图谱展示',
+            icon: 'data-line',
+          },
+          {
             path:"/search",
             name:"search",
             label:'食物成分查询',
-            icon: 's-home',
+            icon: 'search',
           },
           {
             path:"/plate",
             name:"plate",
             label:'我的餐盘',
-            icon: 's-home',
+            icon: 'data-line',
           },
           {
             label:'精准监控',
-            icon: 's-home',
+            icon: 'camera',
             children: [
               {
                 path:"/season",
                 name:"season",
                 label:'赛季',
-                icon: 's-home',
+                icon: 'trophy',
               },
               {
                 path:"/noseason",
                 name:"noseason",
                 label:'非赛季',
-                icon: 's-home',
+                icon: 'collection-tag',
               }
             ]
           },
@@ -72,8 +79,9 @@
             path:"/bigModel",
             name:"bigModel",
             label:'问答模式',
-            icon: 's-home',
+            icon: 'ship',
           },
+          
         ]
       };
     },

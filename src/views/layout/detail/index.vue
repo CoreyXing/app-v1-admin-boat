@@ -146,8 +146,9 @@ export default {
     }
   },
   methods: {
-    handleClick() {
+    handleClick(index) {
       // 点击的时候搜索 只能搜索大类
+      console.log(index)
       this.$router.push({name: 'detailBig'});
     },
     clickName() {
@@ -160,7 +161,7 @@ export default {
 
 <style lang='less' scoped>
   .topContent {
-      background-color: #bfa;
+      background-color: rgb(240, 255, 240);
       border: solid 1px red;
       height: 100px;
       display: flex;
@@ -175,5 +176,8 @@ export default {
     }
   }
 
+  .bottomContent {
+    margin-top: 20px;
+  }
   
 </style>
