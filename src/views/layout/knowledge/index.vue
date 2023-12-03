@@ -21,7 +21,7 @@
 </template>
 
 <script>
-
+import config from './neo4j.config';
 export default {
     name: 'knowledge',
     data() {
@@ -49,28 +49,6 @@ export default {
             this.viz.stabilize();
         },
         draw() {
-            var config = {
-				containerId: "viz",
-				neo4j: {
-					serverUrl: "bolt://localhost:7687",
-					serverUser: "neo4j",
-					serverPassword: "sorts-swims-burglaries"
-				},
-				labels: {
-					Character: {
-						label: "name",
-						value: "pagerank",
-						group: "community"
-					}
-				},
-				relationships: {
-					INTERACTS: {
-						value: "weight"
-					}
-				},
-				initialCypher: "MATCH (n)-[r:INTERACTS]->(m) RETURN n,r,m"
-                // initialCypher: "MATCH (n) RETURN n"
-			};
             this.viz = new NeoVis.default(config);
             this.viz.render();
         }
