@@ -1,4 +1,5 @@
 import request from '@/utils/request'
+import mockRequests from './mockRequest'
 
 /**
  * 注册接口
@@ -30,5 +31,15 @@ export const loginAPI = ({ username, password }) => {
       username,
       password
     }
+  })
+}
+
+/**
+ * 请求食物名称接口
+ */
+export const reqDishesName = () =>{
+  return mockRequests({
+    url:'/dishes',
+    method:'get'
   })
 }

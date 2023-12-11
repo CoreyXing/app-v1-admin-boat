@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import createPersistedState from 'vuex-persistedstate'
 import tab from '@/store/tab'
 import user from '@/store/user'
+import foodtrack from '@/store/foodtrack'
 Vue.use(Vuex)
 // 创建vuex实例
 export default new Vuex.Store({
@@ -10,6 +11,7 @@ export default new Vuex.Store({
   plugins: [createPersistedState()],
   modules: {
     tab,
-    user
+    user,
+    foodtrack
   }
 })

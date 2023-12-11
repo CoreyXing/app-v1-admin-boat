@@ -1,0 +1,43 @@
+//foodtrack模块专属的小仓库
+//任何的小仓库:state、mutations、actions、getters 
+//引入请求函数
+import { reqDishesName } from "@/api";
+
+//仓库存储数据的地方
+const state = {
+    //商品分类的数据,仓库里面数据起始数值不要瞎写【服务器返回的是啥】根据接口的返回值初始化
+    dishesName:[]
+
+};
+
+//唯一可以修改仓库数据地方【工人】
+const mutations = {
+    GETDISHESNAME(state, dishesName) {
+        state.dishesName = dishesName
+            // console.log('在修改仓库中的bannerList数据');
+    }
+
+};
+//可以处理业务逻辑【if、异步语句等等】
+let actions = {
+        // 获取食物的数据
+        async getDishesName({ commit }) {
+            // console.log('在向服务器发送请求获取轮播图的数据');
+            let result = await reqDishesName();
+            console.log(result.data)
+            if (result.code == 200) {
+                commit("GETDISHESNAME", result.data);
+            }
+        },
+
+};
+//仓库计算属性
+let getters = {};
+
+//对外暴露小仓库
+export default {
+    state,
+    mutations,
+    actions,
+    getters
+}

@@ -51,21 +51,21 @@
             icon: 's-home',
           },
           {
-            label:'精准监控',
+            label:'营养监控',
             icon: 's-home',
             children: [
               {
-                path:"/season",
-                name:"season",
-                label:'赛季',
+                path:"/foodtrack",
+                name:"foodtrack",
+                label:'日常营养',
                 icon: 's-home',
               },
-              {
-                path:"/noseason",
-                name:"noseason",
-                label:'非赛季',
-                icon: 's-home',
-              }
+              // {
+              //   path:"/noseason",
+              //   name:"noseason",
+              //   label:'非赛季',
+              //   icon: 's-home',
+              // }
             ]
           },
            {
