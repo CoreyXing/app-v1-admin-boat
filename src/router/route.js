@@ -27,26 +27,11 @@ export default [
         name: 'plate',
         component: () => import('@/views/layout/plate')
       },
-      // {
-      //   path: '/monitor',
-      //   name: 'monitor',
-      //   component: () => import('@/views/layout/weight/monitor')
-      // },
       {
         path: '/foodtrack',
         name: 'foodtrack',
         component: () => import('@/views/layout/weight/foodtrack')
       },
-      // {
-      //   path: '/season',
-      //   name: 'season',
-      //   component: () => import('@/views/layout/weight/season')
-      // },
-      // {
-      //   path: '/noseason',
-      //   name: 'noseason',
-      //   component: () => import('@/views/layout/weight/noseason')
-      // },
       {
         path: '/knowledge',
         name: 'knowledge',
