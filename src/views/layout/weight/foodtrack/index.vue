@@ -4,7 +4,7 @@
       <!-- <div class="left-section">
         
       </div> -->
-      <el-card class="box-card1">
+      <el-card>
         <div class="vertical-div">
           <el-row :gutter="24">
             <el-col :span="12">
@@ -23,14 +23,19 @@
             </el-col>
           </el-row>
         </div>
+        </el-card>
+      <div class="content">
+      <el-card class="box-card1">
         <div class="vertical-div">
           <el-row>
             <el-col :span="8">
               <span class="custom-span">一日三餐记录</span>
             </el-col>
             <el-col :span="8">
-              <input type="text" v-model="keyword" placeholder="输入关键词">
-              <button @click="search">搜索</button>
+              <!-- <input  v-model="keyword" placeholder="输入关键词"> -->
+              <el-input class="custom-input" type="text" v-model="keyword" placeholder="请输入关键字"></el-input>
+              <!-- <button >搜索</button> -->
+              <el-button type="primary" icon="el-icon-search" @click="search">搜索</el-button>
               <ul>
                 <li v-for="result in searchResults" :key="result.id" @click="selectItem(result)">
                   {{ result.name }}
@@ -144,6 +149,7 @@
         </div>
       </el-card>
       <!-- </div> -->
+    </div>
     </div>
     <div class="content">
       <!-- 下方内容 内容为详细的营养分析-->
@@ -384,7 +390,10 @@ export default {
   }
 }
 </script>
-<style scoped>
+<style lang="less" scoped>
+.custom-input {
+  width: 300px; /* 自定义宽度 */
+}
 .important {
   margin-bottom: 10px;
 }
