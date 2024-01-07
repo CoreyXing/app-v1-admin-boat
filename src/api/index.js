@@ -43,7 +43,16 @@ export const reqDishesName = () =>{
     method:'get'
   })
 }
-
+/**
+ * 请求模糊查询后的食物名称接口
+ */
+export const reqDishesVageName = () =>{
+  return mockRequests({
+    url:'/search',
+    method:'post',
+    data: keyword
+  })
+}
 /**
  * 请求餐次记录接口 传的参数是intake_record对象
  */
@@ -54,3 +63,4 @@ export const reqMeals = (intake_record) =>{
     data: intake_record
   })
 }
+

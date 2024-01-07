@@ -33,6 +33,11 @@ export default [
         component: () => import('@/views/layout/weight/foodtrack')
       },
       {
+        path: '/echarts',
+        name: 'echarts',
+        component: () => import('@/views/layout/weight/echarts')
+      },
+      {
         path: '/knowledge',
         name: 'knowledge',
         component: () => import('@/views/layout/knowledge')

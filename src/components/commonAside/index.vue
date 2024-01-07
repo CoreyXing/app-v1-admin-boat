@@ -60,12 +60,12 @@
                 label:'日常营养',
                 icon: 's-home',
               },
-              // {
-              //   path:"/noseason",
-              //   name:"noseason",
-              //   label:'非赛季',
-              //   icon: 's-home',
-              // }
+              {
+                path:"/echarts",
+                name:"echarts",
+                label:'echarts测试',
+                icon: 's-home',
+              }
             ]
           },
            {

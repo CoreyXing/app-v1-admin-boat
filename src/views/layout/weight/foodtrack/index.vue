@@ -9,12 +9,14 @@
           <el-row :gutter="24">
             <el-col :span="12">
               <div class="text">
-                <label for="weight">请输入你的身高（cm）：</label>
+                <svg-icon icon-class="height" className="icon"></svg-icon>
+                <label for="height">请输入你的身高（cm）：</label>
                 <el-input v-model="input" placeholder="请输入身高"></el-input>
               </div>
             </el-col>
             <el-col :span="12">
               <div class="text">
+                <svg-icon icon-class="weight" className="icon"></svg-icon>
                 <label for="weight">请输入你的体重（kg）：</label>
                 <el-input v-model="input" placeholder="请输入体重"></el-input>
               </div>
@@ -23,10 +25,19 @@
         </div>
         <div class="vertical-div">
           <el-row>
-            <el-col :span="12">
+            <el-col :span="8">
               <span class="custom-span">一日三餐记录</span>
             </el-col>
-            <el-col :span="12">
+            <el-col :span="8">
+              <input type="text" v-model="keyword" placeholder="输入关键词">
+              <button @click="search">搜索</button>
+              <ul>
+                <li v-for="result in searchResults" :key="result.id" @click="selectItem(result)">
+                  {{ result.name }}
+                </li>
+              </ul>
+            </el-col>
+            <el-col :span="8">
               <el-button @click="showForm">新增进餐记录</el-button>
             </el-col>
           </el-row>
@@ -62,8 +73,13 @@
                     </el-select>
                   </el-col>
                   <el-col :span="6">
-                    <el-input-number v-model="intake_record.dishes.intake_num" @change="handleChange" :min="1" :max="10"
-                      label="描述文字"></el-input-number>
+                    <!-- <el-input-number v-model="intake_record.dishes.intake_num" @change="handleChange" :min="1" :max="10"
+                      label="描述文字"></el-input-number> -->
+                    <el-select v-model="intake_record.dishes.intake_num" @change="handleChange" placeholder="请选择">
+                      <el-option label="100g" value="100g"></el-option>
+                      <el-option label="1小碗" value="1小碗"></el-option>
+                      <el-option label="1大碗" value="1大碗"></el-option>
+                    </el-select>
                   </el-col>
                   <el-col :span="6">
                     <el-button @click.prevent="removeDish(dish)">删除</el-button>
@@ -79,41 +95,52 @@
           </el-dialog>
         </div>
         <div>
-          <el-table :data="total_data" style="width: 100%">
-            <el-table-column type="expand">
-              <template slot-scope="props">
-                <el-form label-position="left" inline class="demo-table-expand">
-                  <el-form-item label="日期">
-                    <span>{{ props.row.intake_date }}</span>
-                  </el-form-item>
-                  <el-form-item  label="餐次">
-                    <span>{{ props.row.meals_id }}</span>
-                  </el-form-item>
-                  <el-form-item  label="热量（千卡）">
-                    <span>{{ props.row.intake_data.main_ingredient.热量 }}</span>
-                  </el-form-item>
-                  <el-form-item label="碳水化合物（克）">
-                    <span>{{ props.row.intake_data.main_ingredient.碳水化合物 }}</span>
-                  </el-form-item>
-                  <el-form-item label="蛋白质（克）">
-                    <span>{{ props.row.intake_data.main_ingredient.蛋白质 }}</span>
-                  </el-form-item>
-                  <el-form-item label="脂肪（克）">
-                    <span>{{ props.row.intake_data.main_ingredient.脂肪 }}</span>
-                  </el-form-item>
-                  <!-- <el-form-item label="z">
-                    <span>{{ props.row.intro }}</span>
-                  </el-form-item> -->
-                </el-form>
-              </template>
-            </el-table-column>
-            <el-table-column label="日期" prop="intake_date">
-            </el-table-column>
-            <el-table-column label="餐次" prop="meals_id">
-            </el-table-column>
-            <el-table-column label="总热量" prop="intake_data.main_ingredient.热量">
-            </el-table-column>
-          </el-table>
+          <el-row :gutter="24">
+            <el-col :span="12">
+              <el-table :data="total_data" style="width: 100%">
+                <!-- <el-table-column type="expand">
+                  <template slot-scope="props">
+                    <el-form label-position="left" inline class="demo-table-expand">
+                      <el-form-item label="日期">
+                        <span>{{ props.row.intake_date }}</span>
+                      </el-form-item>
+                      <el-form-item label="餐次">
+                        <span>{{ props.row.meals_id }}</span>
+                      </el-form-item>
+                      <el-form-item label="热量（千卡）">
+                        <span>{{ props.row.intake_data.main_ingredient.热量 }}</span>
+                      </el-form-item>
+                      <el-form-item label="碳水化合物（克）">
+                        <span>{{ props.row.intake_data.main_ingredient.碳水化合物 }}</span>
+                      </el-form-item>
+                      <el-form-item label="蛋白质（克）">
+                        <span>{{ props.row.intake_data.main_ingredient.蛋白质 }}</span>
+                      </el-form-item>
+                      <el-form-item label="脂肪（克）">
+                        <span>{{ props.row.intake_data.main_ingredient.脂肪 }}</span>
+                      </el-form-item>
+                    </el-form>
+                  </template>
+                </el-table-column> -->
+                <el-table-column label="日期" prop="intake_date">
+                </el-table-column>
+                <el-table-column label="餐次" prop="meals_id">
+                </el-table-column>
+                <el-table-column label="总热量（千卡）" prop="intake_data.main_ingredient.热量">
+                </el-table-column>
+                <el-table-column label="蛋白质（克）" prop="intake_data.main_ingredient.蛋白质">
+                </el-table-column>
+                <el-table-column label="碳水化合物（克）" prop="intake_data.main_ingredient.碳水化合物">
+                </el-table-column>
+                <el-table-column label="脂肪（克）" prop="intake_data.main_ingredient.脂肪">
+                </el-table-column>
+              </el-table>
+            </el-col>
+            <el-col :span="12">
+              <echarts></echarts>
+            </el-col>
+          </el-row>
+
         </div>
       </el-card>
       <!-- </div> -->
@@ -121,10 +148,10 @@
     <div class="content">
       <!-- 下方内容 内容为详细的营养分析-->
       <el-row :gutter="4">
-        <el-col :span="8">
+        <el-col :span="12">
           <el-card>
             <el-divider direction="vertical"></el-divider>
-            热量分析
+            热量&三大营养素分析
             <div class="dashboard">
               <div class="dashboard-item">
                 <div class="progress-wrapper">
@@ -140,15 +167,6 @@
 
                 </div>
               </div>
-            </div>
-          </el-card>
-        </el-col>
-
-        <el-col :span="8">
-          <el-card>
-            <el-divider direction="vertical"></el-divider>
-            三大营养素分析
-            <div class="dashboard">
               <div class="dashboard-item">
                 <div class="progress-wrapper">
                   <el-progress type="circle" :percentage="100" status="success"></el-progress>
@@ -190,11 +208,11 @@
                   </div>
                   <p>实际摄入量</p>
                 </div>
-              </div>
+            </div>
             </div>
           </el-card>
         </el-col>
-        <el-col :span="8">
+        <el-col :span="12">
           <el-card class="nutrition-card">
 
             <div class="important">
@@ -216,10 +234,11 @@
 </template>
 <script>
 import { mapState } from "vuex";
+import echarts from "../echarts/index.vue"
 export default {
   data() {
     return {
-      total_data:[],
+      total_data: [],
       dialogVisible: false, // 控制对话框的显示和隐藏
       // num: 1,
       pickerOptions: {
@@ -267,8 +286,14 @@ export default {
         date: ''
       },
       value: '',
-      input: ''
+      input: '',
+      keyword: '',                 // 存储用户输入的关键词
+      // searchResults: [],           // 存储搜索结果
+      selectedResult: null         // 存储用户选择的结果
     };
+  },
+  components: {
+    echarts
   },
   methods: {
     //   showDishList(index) {
@@ -288,7 +313,7 @@ export default {
         if (valid) {
           // alert('submit!');
           // this.getMeals(); //调用创建餐次记录的api方法
-          this.$store.dispatch("getMeals",formName);
+          this.$store.dispatch("getMeals", formName);
           this.total_data.push(this.tableData[0]);
           this.showForm = false; // 隐藏表单
         } else {
@@ -325,7 +350,16 @@ export default {
       let day = ('0' + today.getDate()).slice(-2);
       let formattedDate = year + '-' + month + '-' + day;
       return formattedDate;
-    }
+    },
+    search() {
+      // 发起请求到后端进行模糊查询，并更新搜索结果
+      // 这里假设使用 axios 库发送请求到后端的 /api/search 接口
+      this.$store.dispatch("search")
+    },
+    selectItem(item) {
+      this.selectedResult = item;
+      // 执行您希望的其他操作，例如显示选中结果的详细信息等
+    },
   },
   mounted() {
     // this.$store.dispatch("getDishesName");
@@ -333,13 +367,14 @@ export default {
   computed: {
     ...mapState({
       dishesName: (state) => state.foodtrack.dishesName,
-      tableData:(state) =>state.meals.meals || []
+      tableData: (state) => state.meals.meals || [],
+      searchResults: (state) => state.meals_vage.searchResults
     }),
-    total_cal(){
+    total_cal() {
       let date = this.getCurrentDate();
       let newarr = this.total_data.filter(item => item.intake_date === date);
-      console.log('hivgcfcf',this.total_data)
-      console.log('hihuih',newarr)
+      console.log('hivgcfcf', this.total_data)
+      console.log('hihuih', newarr)
       let num = 0;
       newarr.forEach(element => {
         num += parseInt(element.total_intake.main_ingredient.热量);
@@ -404,21 +439,14 @@ export default {
 
 .dashboard {
   display: grid;
-  grid-template-columns: repeat(1, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(2, 1fr);
-  grid-gap: 10px;
-  /* 可根据需要调整仪表板项的间距 */
-  width: 400px;
-  /* 设置仪表盘宽度为600px */
-  height: 400px;
-  /* 设置仪表盘高度为400px */
+  gap: 20px;
 }
 
 .dashboard-item {
-  padding: 10px;
-  /* 可根据需要调整仪表板项的内边距 */
-  display: flex;
-  align-items: center;
+  padding: 20px;
+  border-radius: 8px;
 }
 
 .progress-wrapper {
@@ -452,4 +480,5 @@ export default {
 .content {
   margin-top: 10px;
   /* 可根据需要调整内容与上方部分的间距 */
-}</style>
+}
+</style>

@@ -12,8 +12,25 @@ import store from '@/store' //挂载store实例
 import '@/mock/mockServer'
 import { reqDishesName } from '@/api';
 reqDishesName();
+import { reqDishesVageName  } from '@/api';
+import * as echarts from 'echarts'
+Vue.prototype.$echarts = echarts
 
 Vue.config.productionTip = false
+import VueSvgIcon from 'vue-svgicon';
+//svg图标的设置
+import '@/assets/icons'
+import svgIcon from '@/assets/icons/Svg.vue'
+Vue.component('svg-icon', svgIcon)
+
+
+Vue.use(VueSvgIcon,{
+  tagName: 'svg-icon',
+  defaultWidth: '1em',
+  defaultHeight: '1em',
+  isOriginalDefault: true,
+  svgFolder: 'src/icons'
+});
 
 new Vue({
   store,
