@@ -373,8 +373,6 @@ export default {
     total_cal() {
       let date = this.getCurrentDate();
       let newarr = this.total_data.filter(item => item.intake_date === date);
-      console.log('hivgcfcf', this.total_data)
-      console.log('hihuih', newarr)
       let num = 0;
       newarr.forEach(element => {
         num += parseInt(element.total_intake.main_ingredient.热量);

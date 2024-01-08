@@ -52,12 +52,6 @@
             icon: 'search',
           },
           {
-            path:"/plate",
-            name:"plate",
-            label:'我的餐盘',
-            icon: 'data-line',
-          },
-          {
             label:'营养监控',
             icon: 's-home',
             children: [

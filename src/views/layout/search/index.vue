@@ -98,7 +98,6 @@ export default {
     // 根据第一大类检索出对应的第二大类
     getSecondClass(firstclass) {
       // 根据第一大类获取第二大类
-      console.log('123')
       this.$store.dispatch('getSecondClass', firstclass);
     },
     // 根据第一大类和第二大类获取食物的具体名字

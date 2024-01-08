@@ -30,11 +30,6 @@ export default [
         ]
       },
       {
-        path: '/plate',
-        name: 'plate',
-        component: () => import('@/views/layout/plate')
-      },
-      {
         path: '/foodtrack',
         name: 'foodtrack',
         component: () => import('@/views/layout/weight/foodtrack')
