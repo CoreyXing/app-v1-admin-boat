@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /**
  * request.js用于正式与后台联调发送的请求，这个配置的baseURL应该与mockRequest.js的baseURL不同
  */

@@ -1,6 +1,27 @@
 import request from '@/utils/request'
 import mockRequests from './mockRequest'
+import request from './request';
+import mockRequests from './mockIndex';
+// 服务器数据
+export const reqGetFoodData = () => request.get('/foods');
+// 模拟数据 知识图谱的展示
+// 检索整个图谱
 
+// export const searchAPI = (query) => {
+//   const CancelToken = axios.CancelToken
+//   const source = CancelToken.source()
+//   request.post('http://127.0.0.1/80/api/post',{
+//       cancelToken: source.token,
+//       data: {
+//           name: 'zhangsan',
+//           age: 18
+//       }
+//     }  
+//   ).then((res) => {
+//     console.log('res',res);
+//   })
+//   source.cancel('取消请求')
+// }
 /**
  * 注册接口
  * @param {*} param0 { username: 用户名, password: 密码 }

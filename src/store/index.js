@@ -6,6 +6,7 @@ import user from '@/store/user'
 import foodtrack from '@/store/foodtrack'
 import meals from '@/store/meals'
 import meals_vage from '@/store/meals_vage'
+import food from '@/store/food'
 Vue.use(Vuex)
 // 创建vuex实例
 export default new Vuex.Store({
@@ -16,6 +17,7 @@ export default new Vuex.Store({
     user,
     foodtrack,
     meals,
-    meals_vage
+    meals_vage,
+    food,
   }
 })

@@ -8,8 +8,8 @@
       active-text-color="#ffd04b">
       <h3>{{ isCollapse ? '饮食' : '饮食管理系统' }}</h3>
       <el-menu-item
-       v-for="item in nochildren " :key="item.name"
-       :index="item.path">
+        v-for="item in nochildren " :key="item.name"
+        :index="item.path">
         <i :class="`el-icon-${item.icon}`"></i>
         <span slot="title">{{ item.label }}</span>
       </el-menu-item>
@@ -31,6 +31,7 @@
     data() {
       return {
         isRouter: true,
+        // 这样写可以用来进行权限管理 利用后台返回回来的对于权限的列表
         menuData: [
           {
             path:"/home",
@@ -39,16 +40,22 @@
             icon: 's-home',
           },
           {
+            path:"/knowledge",
+            name:"knowledge",
+            label:'知识图谱展示',
+            icon: 'data-line',
+          },
+          {
             path:"/search",
             name:"search",
             label:'食物成分查询',
-            icon: 's-home',
+            icon: 'search',
           },
           {
             path:"/plate",
             name:"plate",
             label:'我的餐盘',
-            icon: 's-home',
+            icon: 'data-line',
           },
           {
             label:'营养监控',
@@ -68,12 +75,13 @@
               }
             ]
           },
-           {
+          {
             path:"/bigModel",
             name:"bigModel",
             label:'问答模式',
-            icon: 's-home',
+            icon: 'ship',
           },
+          
         ]
       };
     },
