@@ -4,7 +4,7 @@
     <el-row>
       <el-col :span="24">
         <div class="topContent">
-            <h3 style="text-align:center;font-size:36px;color:#666;">营养成分查询平台</h3>
+            <!-- <h3 style="text-align:center;font-size:36px;color:#666;">营养成分查询平台</h3> -->
             <div class="content">
               <el-form :inline="true" :model="formInline" :rules="rules" ref="ruleForm" class="demo-form-inline">
                   <el-form-item label="第一大类" prop="firstClass">
@@ -13,7 +13,9 @@
                     placeholder="选择第一大类" 
                     filterable 
                     clearable 
-                    @change="getSecondClass">
+                    @change="getSecondClass"
+                    @clear="clearFirst"
+                    @focus="focusFirst">
                     <el-option v-for="(item,index) in firstClass"
                       :key="index"
                       :label="item" 
@@ -23,6 +25,8 @@
                 <el-form-item label="第二大类" prop="secondClass">
                   <el-select v-model="formInline.secondClass"
                     @change="getFoodName"
+                    @clear="clearSecond"
+                    @focus="focusSecond"
                     filterable
                     clearable
                     placeholder="选择第二大类">
@@ -32,15 +36,17 @@
                       :value="item"></el-option>
                   </el-select>
                 </el-form-item>
-                <el-form-item label="食物名字" prop="foodName">
-                  <el-select v-model="formInline.foodName" 
+                <el-form-item label="食物名字" prop="food_id">
+                  <el-select v-model="formInline.food_id" 
                     filterable
                     clearable
-                    placeholder="选择食物名字">
-                    <el-option v-for="(item,index) in food"
-                      :key="index"
-                      :label="item" 
-                      :value="item"></el-option>
+                    placeholder="选择食物名字"
+                    >
+                    <el-option v-for="item in food"
+                      :key="item.id"
+                      :label="item.foodName" 
+                      :value="item.id"
+                      ></el-option>
                   </el-select>
                 </el-form-item>
                 <el-form-item>
@@ -51,33 +57,13 @@
         </div>
       </el-col>
     </el-row>
-    <!-- <el-row>
-      <el-col :span="24">
-        <div>
-          <h1 style="text-align:center;font-size:36px;color:#666;">食物分类/Food Groups</h1>
-          <div class="cardContent" @click="goSearch">
-            <el-card v-for="item in cardData" :key="item.id">
-              <div slot="header" class="clearfix">
-                <i class="el-icon-menu"></i>
-                <span>{{ item.name }}</span>
-              </div>
-              <div class="detail" v-for="o in item.category" :key="o">
-                <a class="text item" href=''>{{ o }}</a>
-              </div>
-            </el-card>
-          </div>
-        </div>
-      </el-col>
-    </el-row> -->
-    <!-- 食物分类的清单 -->
     <router-view></router-view>
-    <div>
-
-    </div>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
   name: "search",
   data() {
@@ -85,7 +71,7 @@ export default {
       formInline: {
           firstClass: '',
           secondClass: '',
-          foodName: ''
+          food_id: ''
       },
       rules: {
           firstClass: [
@@ -94,157 +80,69 @@ export default {
           secondClass: [
             { required: true, message: '请选择第二大类', trigger: 'change' },
           ],
-          foodName: [
+          food_id: [
             { required: true, message: '请选择食物名称', trigger: 'change' },
           ],
       },
-      cardData: [
-        {
-          id: 1,
-          name: '谷类及制品',
-          category: ["小麦","稻米","玉米","大麦","小米，黄米","其他"] 
-        },
-        {
-          id: 2,
-          name: '薯类，淀粉及制品',
-          category: ["薯类","淀粉"] 
-        },
-        {
-          id: 3,
-          name: '干豆类及制品',
-          category: ["大豆","绿豆","赤豆","芸豆","蚕豆","其他"] 
-        },
-        {
-          id: 4,
-          name: '蔬菜类及制品',
-          category: ["根菜类","鲜豆类","茄果，瓜菜类","葱蒜类","嫩茎，叶，花菜类","水牛蔬菜类","薯芋类","野生出彩类"] 
-        },
-        {
-          id: 5,
-          name: '菌藻类',
-          category: ["菌类","藻类"] 
-        },
-        {
-          id: 6,
-          name: '水果类及制品',
-          category: ["仁果类","核果类","浆果类","柑橘类","热带，亚热带水果","瓜果类"] 
-        },
-        {
-          id: 7,
-          name: '坚果，种子类',
-          category: ["树坚果","种子"] 
-        },
-        {
-          id: 8,
-          name: '谷类及制品',
-          category: ["小麦","稻米","玉米","大麦","小米，黄米","其他"] 
-        },
-        {
-          id: 9,
-          name: '薯类，淀粉及制品',
-          category: ["薯类","淀粉"] 
-        },
-        {
-          id: 10,
-          name: '干豆类及制品',
-          category: ["大豆","绿豆","赤豆","芸豆","蚕豆","其他"] 
-        },
-        {
-          id: 11,
-          name: '蔬菜类及制品',
-          category: ["根菜类","鲜豆类","茄果，瓜菜类","葱蒜类","嫩茎，叶，花菜类","水牛蔬菜类","薯芋类","野生出彩类"] 
-        },
-        {
-          id: 12,
-          name: '菌藻类',
-          category: ["菌类","藻类"] 
-        },
-        {
-          id: 13,
-          name: '水果类及制品',
-          category: ["仁果类","核果类","浆果类","柑橘类","热带，亚热带水果","瓜果类"] 
-        },
-        {
-          id: 14,
-          name: '坚果，种子类',
-          category: ["树坚果","种子"] 
-        },
-        {
-          id: 15,
-          name: '谷类及制品',
-          category: ["小麦","稻米","玉米","大麦","小米，黄米","其他"] 
-        },
-        {
-          id: 16,
-          name: '薯类，淀粉及制品',
-          category: ["薯类","淀粉"] 
-        },
-        {
-          id:17,
-          name: '干豆类及制品',
-          category: ["大豆","绿豆","赤豆","芸豆","蚕豆","其他"] 
-        }
-      ]
     }
   },
   mounted() {
     //挂载访问接口
     // 我是搜索组件
-    console.log('我是根组件')
-    this.$store.dispatch('getFood');
+    this.$store.dispatch('getFoodFirstClass');
   },
   computed: {
-    searchList() {
-      return this.$store.state.food.searchList || {};
-    },
-    firstClass() {
-      return [...new Set(this.searchList.map((item) => item.firstClass))]
-    },
-    secondClass() {
-      return this.$store.state.food.second || [];
-    },
-    food() {
-      return this.$store.state.food.food || [];
-    },
-    detail() {
-      return this.$store.state.food.detail || {};
-    }
+    ...mapGetters(['firstClass','secondClass','food', 'isShow']),
   },
   methods:{
-    // 第一个选择框
-    getSecondClass() {
+    // 根据第一大类检索出对应的第二大类
+    getSecondClass(firstclass) {
       // 根据第一大类获取第二大类
-      let second = this.searchList.filter((item) => {
-        return item.firstClass === this.formInline.firstClass
-      })
-      this.$store.dispatch('getSecondClass', second);
+      this.$store.dispatch('getSecondClass', firstclass);
     },
-    // 获取食物的具体名字
-    getFoodName() {
-      let foodName = this.searchList.filter((item) => {
-        return item.firstClass === this.formInline.firstClass && item.secondClass === this.formInline.secondClass
-      })
-      this.$store.dispatch('getFoodName', foodName);
+    // 根据第一大类和第二大类获取食物的具体名字
+    getFoodName(secondclass) {
+      let query = {
+        firstclass: this.formInline.firstClass,
+        secondclass: secondclass
+      }
+      this.$store.dispatch('getFoodName', query);
     },
     // 输入三个关键词进行搜索
     async handleClick(ruleForm) {
       //  发送请求
       this.$refs[ruleForm].validate((valid)=>{
+        // 验证规则正常
         if (valid) {
-          console.log(valid)
-            // 派发搜索的action
-            this.$store.dispatch('getFoodDetail', this.formInline);
-            // this.$router.push({name: "detail"});
-            this.$router.push({name: 'detailSmall'});
+            this.$router.push({ name: 'searchDetail',params:{food_id: this.formInline.food_id}});
           } else {
             return false;
           }
       })
     },
-    goSearch(event){
-      console.log(event);
-      let node = event.target;
-      let {} = node.dataset;
+    // 清空级联的二三select数据
+    clearFirst(){
+      this.$refs['ruleForm'].resetFields();
+      // 有个问题 没有清空food_id 下的option 为什么清空了firstclass和secondclass
+      this.food.splice(0, this.food.length);
+    },
+    clearSecond(){
+      // 清空foodName
+      this.formInline.food_id = '';
+      this.food.splice(0, this.food.length);
+    },
+    focusFirst() {
+      // 获取焦点的时候触发清空第二大类和食物名称
+      this.formInline.secondClass = '';
+      this.secondClass.splice(0, this.secondClass.length);
+      // 有个问题 没有清空food_id 下的option 为什么清空了firstclass和secondclass
+      // 这里没有清空options为什么
+      this.formInline.food_id = '';
+      this.food.splice(0, this.food.length);
+    },
+    focusSecond(){
+      this.formInline.food_id = '';
+      this.food.splice(0, this.food.length);
     }
   }
 }
@@ -252,9 +150,9 @@ export default {
 
 <style lang="less" scoped>
   .topContent {
-      background-color: rgb(240, 255, 240);
-      border: solid 1px red;
-      height: 250px;
+      background-color: rgb(255, 255, 255);
+      height: 125px;
+      border-radius: 10px;
       display: flex;
       flex-direction: column;
       justify-content: center;

@@ -8,8 +8,8 @@
       active-text-color="#ffd04b">
       <h3>{{ isCollapse ? '饮食' : '饮食管理系统' }}</h3>
       <el-menu-item
-       v-for="item in nochildren " :key="item.name"
-       :index="item.path">
+        v-for="item in nochildren " :key="item.name"
+        :index="item.path">
         <i :class="`el-icon-${item.icon}`"></i>
         <span slot="title">{{ item.label }}</span>
       </el-menu-item>

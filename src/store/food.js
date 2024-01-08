@@ -1,18 +1,18 @@
-import {reqGetFoodData,regGetFood} from '@/api/index'
+import {reqGetFirstClass,regGetFoodDetail, reqGetSecondClass, reqGetFoodName} from '@/api/index'
 export default {
   state: {
-    searchList:{},
-    second: [],
+    firstclass:[],
+    secondclass: [],
     food: [],
-    detail: {}
+    detail: {},
   },
 
   mutations: {
-    GETFOODSDATA(state, searchList) {
-      state.searchList = searchList;
+    GETFOODSFIRSTCLASS(state, firstclass) {
+      state.firstclass = firstclass;
     },
     GETSECONDCLASS(state, secondClass) {
-      state.second = secondClass;
+      state.secondclass = secondClass;
     },
     GETFOODNAME(state, food) {
       state.food = food;
@@ -23,32 +23,50 @@ export default {
   },
 
   actions: {
-    // 这里是post是有载荷的
-    async getFood({commit}) {
-      let result = await reqGetFoodData();
+    async getFoodFirstClass({commit}) {
+      let result = await reqGetFirstClass();
       if (result.status === 200) {
-        commit('GETFOODSDATA', result.data);
+        commit('GETFOODSFIRSTCLASS', result.data);
       }
     },
 
-    // 获取第二类
-    getSecondClass({commit}, second) {
-      let secondClass = [...new Set(second.map( item => item.secondClass))];
-      commit('GETSECONDCLASS', secondClass)
+    // 获取第二类 载荷firstclass
+    async getSecondClass({commit}, firstclass) {
+      let result = await reqGetSecondClass(firstclass);
+      if (result.status === 200) {
+        commit('GETSECONDCLASS', result.data)
+      }
     },
 
     // 获取具体食物的名称
-    getFoodName({commit}, foodName) {
-      let food = [...new Set(foodName.map(item => item.foodName))];
-      commit('GETFOODNAME', food);
+    async getFoodName({commit}, query) {
+      console.log('store', query)
+      let result = await reqGetFoodName(query);
+      if (result.status === 200) {
+        commit('GETFOODNAME', result.data)
+      }
     },
 
     // 获取详细信息
-    async getFoodDetail({commit}, formLine) {
-      let result = await regGetFood();
-      if(result.code === 200) {
+    async getFoodDetail({commit}, food_id) {
+      let result = await regGetFoodDetail(food_id);
+      if(result.status === 200) {
         commit('GETFOODDETAIL', result.data);
       }
     }
+  },
+  getters: {
+    firstClass(state) {
+      return state.firstclass || [];
+    },
+    secondClass(state) {
+      return state.secondclass || [];
+    },
+    food(state) {
+      return state.food || [];
+    },
+    detail(state) {
+      return state.detail || {};
+    },
   }
 }
