@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 /**
  * request.js用于正式与后台联调发送的请求，这个配置的baseURL应该与mockRequest.js的baseURL不同
  */
@@ -9,7 +8,7 @@ import axios from 'axios'
 const requests = axios.create({
   // 配置对象
   // 基础路径，发请求的时候，路径当中会出现api
-  baseURL: '/mock',
+  baseURL: '/api',
   timeout: 5000,
 })
 

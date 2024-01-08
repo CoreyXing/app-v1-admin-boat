@@ -1,7 +1,5 @@
-import request from '@/utils/request'
 import mockRequests from './mockRequest'
 import request from './request';
-import mockRequests from './mockIndex';
 // 服务器数据
 // http://172.20.137.141:8080/api/foods/firstclass
 export const reqGetFirstClass = () => request.get('/foods/firstclass');
@@ -30,9 +28,6 @@ export const regGetFoodDetail = (food_id) => {
     method: 'get',
   })
 }
-// 模拟数据 知识图谱的展示
-// 检索整个图谱
-export const reqGetKnowData = ()=>mockRequests.get('/knowData');
 
 // export const searchAPI = (query) => {
 //   const CancelToken = axios.CancelToken
