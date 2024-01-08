@@ -20,7 +20,14 @@ export default [
       {
         path: '/search',
         name: 'search',
-        component: () => import('@/views/layout/search')
+        component: () => import('@/views/layout/search'),
+        children: [
+          {
+            path: '/search/searchDetail/:food_id?',
+            name: 'searchDetail',
+            component: () => import('@/views/layout/search/searchDetail'),
+          }, 
+        ]
       },
       {
         path: '/plate',
@@ -47,23 +54,6 @@ export default [
         name: 'bigModel',
         component: () => import('@/views/layout/bigModel')
       },
-      {
-        path: '/detail',
-        name: 'detail',
-        component: () => import('@/views/layout/detail'),
-        children: [
-          {
-            path: '/detail/detailBig',
-            name: 'detailBig',
-            component: () => import('@/views/layout/detail/detailBig'),
-          },
-          {
-            path: '/detail/detailSmall',
-            name: 'detailSmall',
-            component: () => import('@/views/layout/detail/detailSmall'),
-          },          
-        ]
-      }
     ]
   },
 ]
