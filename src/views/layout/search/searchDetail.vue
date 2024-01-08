@@ -2,18 +2,15 @@
   <div>
       <el-row class="top">
         <el-col :span="8">
-            <el-card>
+            <el-card class="box-card">
               <div slot="header" class="clearfix">
                 <i class="el-icon-menu"></i>
-                <span>谷类及制品</span>
+                <span >{{detail.firstClass}}</span>
               </div>
-              <div class="detail">
-                <a>小麦</a>
-                <a>稻米</a>
-                <a>玉米</a>
-                <a>大麦</a>
-                <a>小米黄米</a>
-                <a>其他</a>
+              <div class="detail" >
+                <div class="list" v-for="(item,index) in secondClass" :key="index">
+                  <span class="item">{{item}}</span>
+                </div>
               </div>
             </el-card>
         </el-col>
@@ -23,9 +20,9 @@
             <div>
               <div class="r-content">
                 <div class="r-content-top">
-                  <h1>小麦粉(标准粉)</h1>
-                  <span>食物类：谷类及制品</span>
-                  <span>亚类:小麦</span>
+                  <h1>{{detail.foodName}}</h1>
+                  <span>食物类:{{detail.firstClass}}</span>
+                  <span>亚类:{{detail.secondClass}}</span>
                 </div>
                 <div class="statement">
                     <p>
@@ -41,72 +38,76 @@
       </el-row>
       <!-- 五个card -->
       <div id="content">
-        <el-card class="box-card">
-          <div slot="header" class="clearfix">
-            <h3>基本营养</h3>
-          </div>
-          <div v-for="(o,index) in detailData[0].jibenyingyang" :key="index" class="text item">
-            {{index}} : {{o}}
-          </div>
-        </el-card>
-        <el-card class="box-card">
-          <div slot="header" class="clearfix">
-            <h3>矿物质</h3>
-          </div>
-          <div v-for="(o,index) in detailData[0].kuangwuzhi" :key="index" class="text item">
-            {{index}} : {{o}}
-          </div>
-        </el-card>
-        <el-card class="box-card">
-          <div slot="header" class="clearfix">
-            <h3>脂类</h3>
-          </div>
-          <div v-for="(o,index) in detailData[0].zhilei" :key="index" class="text item">
-            {{index}} : {{o}}
-          </div>
-        </el-card>
-        <el-card class="box-card">
-          <div slot="header" class="clearfix">
-            <h3>维生素</h3>
-          </div>
-          <div v-for="(o,index) in detailData[0].weishengsu" :key="index" class="text item">
-            {{index}} : {{o}}
-          </div>
-        </el-card>
-        <el-card class="box-card">
-          <div slot="header" class="clearfix">
-            <h3>基本营养</h3>
-          </div>
-          <div v-for="(o,index) in detailData[0].gongxiao" :key="index" class="text item">
-            {{o}}
-          </div>
-        </el-card>
+        <common-card :list="jibenyingyang" :name="'基本营养'"/>
+        <common-card :list="kuangwuzhi" :name="'矿物质'"/>
+        <common-card :list="zhilei" :name="'脂类'"/>
+        <common-card :list="weishengsu" :name="'维生素'"/>
       </div>
   </div>
 </template>
 
 <script>
-import {regGetFood} from '@/api/index'
+import { mapGetters } from 'vuex';
+import commonCard from '@/components/commonCard'
 export default {
   name:'searchDetail',
+  components:{
+    commonCard
+  },
   data(){
     return {
       detailData:[],
+      isOpen: false,
+      max: 5,
     }
   },
   mounted() {
-      this.getData();
-      console.log('详细信息',this.detailData);
+    // 挂载的时候 根据路由传参 获取对应的详细信息
+    this.getData();
+  },
+  computed: {
+    ...mapGetters(['detail', 'secondClass']),
+    jibenyingyang(){
+      return JSON.parse(this.detail.jibenyingyang);
     },
-  methods:{
-      async getData() {
-        let result = await regGetFood();
-        if (result.code === 200) {
-          console.log(result.data);
-          this.detailData = result.data;
-        }
+    kuangwuzhi(){
+      return JSON.parse(this.detail.kuangwuzhi);
+    },
+    zhilei(){
+      return JSON.parse(this.detail.zhilei);
+    },
+    weishengsu(){
+      return JSON.parse(this.detail.weishengsu);
+    },
+    gongxiao(){
+      return JSON.parse(this.detail.gongxiao);
+    },
+    displayedItems() {
+      if (this.isCollapsed) {
+        return this.items.slice(0, 5); // 只显示前五条数据
+      } else {
+        return this.items; // 显示所有数据
       }
     }
+  },
+  methods:{
+      getData() {
+        this.$store.dispatch('getFoodDetail', this.$route.params.food_id);
+      },
+      toggleCollapse(){
+        this.isCollapsed = !this.isCollapsed;
+      }
+  },
+  // 为了发送新的请求 监听路由的变化
+  watch: {
+    // 监听路由信息 是否发生变化，如果发生变化，再次发起请求
+    $route(oldValue, newValue) {
+      // 再次发送请求之前需要再次整理参数
+      Object.assign(this.$route.query, this.$route.params);
+      // 发送请求
+      this.getData();
+    }
+  }
 }
 </script>
 
@@ -119,12 +120,12 @@ export default {
         display: flex;
         justify-content: space-between;
         flex-wrap: wrap;
-        a {
-          font-size: 16px;
-          margin-bottom: 20px;
-          width: 32%;
+        span {
+          font-size: 15px;
+          margin: 20px 0;
           display: inline-block;
         }
+        
       }
     }
     .topContent {
@@ -162,31 +163,6 @@ export default {
     }
   }
 #content{
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  margin-top:20px;
-  .text {
-    font-size: 14px;
-  }
-
-  .item {
-    margin-bottom: 18px;
-  }
-
-  .clearfix:before,
-  .clearfix:after {
-    display: table;
-    content: "";
-  }
-  .clearfix:after {
-    clear: both
-  }
-
-  .box-card {
-    width: 500px;
-    margin:10px 0;
-  }
+  
 }
 </style>

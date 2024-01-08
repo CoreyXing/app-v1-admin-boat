@@ -23,7 +23,7 @@ export default [
         component: () => import('@/views/layout/search'),
         children: [
           {
-            path: '/search/searchDetail',
+            path: '/search/searchDetail/:food_id?',
             name: 'searchDetail',
             component: () => import('@/views/layout/search/searchDetail'),
           }, 
@@ -54,23 +54,6 @@ export default [
         name: 'bigModel',
         component: () => import('@/views/layout/bigModel')
       },
-      {
-        path: '/detail',
-        name: 'detail',
-        component: () => import('@/views/layout/detail'),
-        children: [
-          {
-            path: '/detail/detailBig',
-            name: 'detailBig',
-            component: () => import('@/views/layout/detail/detailBig'),
-          },
-          {
-            path: '/detail/detailSmall',
-            name: 'detailSmall',
-            component: () => import('@/views/layout/detail/detailSmall'),
-          },          
-        ]
-      }
     ]
   },
 ]

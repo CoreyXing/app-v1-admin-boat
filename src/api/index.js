@@ -3,9 +3,36 @@ import mockRequests from './mockRequest'
 import request from './request';
 import mockRequests from './mockIndex';
 // 服务器数据
-export const reqGetFoodData = () => request.get('/foods');
+// http://172.20.137.141:8080/api/foods/firstclass
+export const reqGetFirstClass = () => request.get('/foods/firstclass');
+
+// 获取第二大类的数据
+export const reqGetSecondClass = (firstclass) => {
+  return request({
+    url:`/foods/secondclass?firstclass=${firstclass}`,
+    method: 'get',
+  })
+}
+
+// 获取具体食物
+export const reqGetFoodName = (data) => {
+  return request({
+    url: '/foods/getbyclass',
+    method: 'get',
+    params: data
+  })
+}
+
+// 根据食物id获取对应的详细信息
+export const regGetFoodDetail = (food_id) => {
+  return request({
+    url:`/foods/getbyid/${food_id}`,
+    method: 'get',
+  })
+}
 // 模拟数据 知识图谱的展示
 // 检索整个图谱
+export const reqGetKnowData = ()=>mockRequests.get('/knowData');
 
 // export const searchAPI = (query) => {
 //   const CancelToken = axios.CancelToken
