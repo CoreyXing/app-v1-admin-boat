@@ -22,7 +22,6 @@ import VueSvgIcon from 'vue-svgicon';
 import '@/assets/icons'
 import svgIcon from '@/assets/icons/Svg.vue'
 Vue.component('svg-icon', svgIcon)
-import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 
 
 Vue.use(VueSvgIcon,{

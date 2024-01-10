@@ -9,16 +9,16 @@
           <el-row :gutter="24">
             <el-col :span="12">
               <div class="text">
-                <svg-icon icon-class="height" className="icon"></svg-icon>
-                <label for="height">请输入你的身高（cm）：</label>
-                <el-input v-model="input" placeholder="请输入身高"></el-input>
+                <i class="el-icon-s-custom"></i>
+                <label class="custom-span" for="height">身高（cm）：183</label>
+                <!-- <el-input v-model="input" placeholder="请输入身高"></el-input> -->
               </div>
             </el-col>
             <el-col :span="12">
               <div class="text">
-                <svg-icon icon-class="weight" className="icon"></svg-icon>
-                <label for="weight">请输入你的体重（kg）：</label>
-                <el-input v-model="input" placeholder="请输入体重"></el-input>
+                <i class="el-icon-s-custom"></i>
+                <label for="weight" class="custom-span">体重（kg）：80</label>
+                <!-- <el-input v-model="input" placeholder="请输入体重"></el-input> -->
               </div>
             </el-col>
           </el-row>
@@ -28,8 +28,11 @@
       <el-card class="box-card1">
         <div class="vertical-div">
           <el-row>
-            <el-col :span="8">
+            <!-- <el-col :span="8">
               <span class="custom-span">一日三餐记录</span>
+            </el-col> -->
+            <el-col :span="8">
+              <el-button class="custom-button" type="primary" @click="showForm">新增进餐记录</el-button>
             </el-col>
             <el-col :span="8">
               <!-- <input  v-model="keyword" placeholder="输入关键词"> -->
@@ -41,9 +44,6 @@
                   {{ result.name }}
                 </li>
               </ul>
-            </el-col>
-            <el-col :span="8">
-              <el-button @click="showForm">新增进餐记录</el-button>
             </el-col>
           </el-row>
           <el-dialog :visible.sync="dialogVisible" title="本餐次的食物记录">
@@ -101,7 +101,8 @@
         </div>
         <div>
           <el-row :gutter="24">
-            <el-col :span="12">
+            <el-col :span="14">
+              <span class="custom-span">一日三餐记录</span>
               <el-table :data="total_data" style="width: 100%">
                 <!-- <el-table-column type="expand">
                   <template slot-scope="props">
@@ -141,7 +142,7 @@
                 </el-table-column>
               </el-table>
             </el-col>
-            <el-col :span="12">
+            <el-col :span="10">
               <echarts></echarts>
             </el-col>
           </el-row>
@@ -156,8 +157,8 @@
       <el-row :gutter="4">
         <el-col :span="12">
           <el-card>
-            <el-divider direction="vertical"></el-divider>
-            热量&三大营养素分析
+            <!-- <el-divider direction="vertical"></el-divider> -->
+            <div class="custom-span">热量&三大营养素分析</div>
             <div class="dashboard">
               <div class="dashboard-item">
                 <div class="progress-wrapper">
@@ -222,25 +223,25 @@
           <el-card class="nutrition-card">
 
             <div class="important">
-              <el-divider direction="vertical"></el-divider>
-              重点营养素分析
+              <!-- <el-divider direction="vertical"></el-divider> -->
+              <div class="custom-span">重点营养素分析</div>
             </div>
-            <el-progress class="nutrition-progress" :percentage="50"></el-progress>
+            <minirals></minirals>
+            <!-- <el-progress class="nutrition-progress" :percentage="50"></el-progress>
             <el-progress class="nutrition-progress" :percentage="100" :format="format"></el-progress>
             <el-progress class="nutrition-progress" :percentage="100" status="success"></el-progress>
             <el-progress class="nutrition-progress" :percentage="100" status="warning"></el-progress>
-            <el-progress class="nutrition-progress" :percentage="50" status="exception"></el-progress>
+            <el-progress class="nutrition-progress" :percentage="50" status="exception"></el-progress> -->
           </el-card>
         </el-col>
       </el-row>
-
-
     </div>
   </div>
 </template>
 <script>
 import { mapState } from "vuex";
 import echarts from "../echarts/index.vue"
+import minirals from "../minirals/index.vue"
 export default {
   data() {
     return {
@@ -292,14 +293,15 @@ export default {
         date: ''
       },
       value: '',
-      input: '',
+      // input: '',
       keyword: '',                 // 存储用户输入的关键词
       // searchResults: [],           // 存储搜索结果
       selectedResult: null         // 存储用户选择的结果
     };
   },
   components: {
-    echarts
+    echarts,
+    minirals
   },
   methods: {
     //   showDishList(index) {
@@ -391,20 +393,30 @@ export default {
 }
 </script>
 <style lang="less" scoped>
+.el-icon-s-custom{
+  font-size: 16px;
+}
+.custom-button{
+  width: 200px;
+  margin-left: 16px;
+  font-size: 16px;
+}
 .custom-input {
   width: 300px; /* 自定义宽度 */
+
 }
 .important {
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
 .nutrition-progress {
-  margin-bottom: 10px;
+  margin-bottom: 8px;
   /* 添加底部间距为10像素 */
 }
 
 .nutrition-card {
-  margin-bottom: 20px;
+  margin-bottom: 16px;
+  height: 668px;
   /* 添加底部间距为20像素 */
 }
 
@@ -430,7 +442,7 @@ export default {
 }
 
 .vertical-div {
-  margin-bottom: 20px;
+  margin-bottom: 16px;
   /* 调整竖直方向的间距，这里设为 20px */
 }
 
@@ -459,7 +471,7 @@ export default {
 }
 
 .progress-wrapper {
-  margin-right: 10px;
+  margin-right: 8px;
   /* 可选样式，用于控制进度条与文字之间的间距 */
 }
 
@@ -487,7 +499,7 @@ export default {
 }
 
 .content {
-  margin-top: 10px;
+  margin-top: 8px;
   /* 可根据需要调整内容与上方部分的间距 */
 }
 </style>

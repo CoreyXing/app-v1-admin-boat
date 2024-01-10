@@ -3,12 +3,12 @@
  */
 import axios from 'axios'
 
-// 利用axios对象的create方法，去创建一个案axios实例
-// requests就是案axios，只不过稍微配置一下
+// 利用axios对象的create方法，去创建一个axios实例
+// requests就是axios，只不过稍微配置一下
 const requests = axios.create({
   // 配置对象
   // 基础路径，发请求的时候，路径当中会出现api
-  baseURL: '/mock',
+  baseURL: 'http://localhost:8080/api',
   timeout: 5000,
 })
 
