@@ -24,35 +24,37 @@ const  mutations = {
 let actions = {
   async getFoodFirstClass({commit}) {
     let result = await reqGetFirstClass();
-    if (result.status === 200) {
-      commit('GETFOODSFIRSTCLASS', result.data);
-    }
+    // if (result.status === 200) {
+    //   commit('GETFOODSFIRSTCLASS', result.data);
+    // }
+    commit('GETFOODSFIRSTCLASS', result);
   },
 
   // 获取第二类 载荷firstclass
   async getSecondClass({commit}, firstclass) {
     let result = await reqGetSecondClass(firstclass);
-    if (result.status === 200) {
-      
-      commit('GETSECONDCLASS', result.data)
-    }
+    // if (result.status === 200) {
+    //   commit('GETSECONDCLASS', result.data)
+    // }
+    commit('GETSECONDCLASS', result);
   },
 
   // 获取具体食物的名称
   async getFoodName({commit}, query) {
-    console.log('store', query)
     let result = await reqGetFoodName(query);
-    if (result.status === 200) {
-      commit('GETFOODNAME', result.data)
-    }
+    // if (result.status === 200) {
+    //   commit('GETFOODNAME', result.data)
+    // }
+    commit('GETFOODNAME', result);
   },
 
   // 获取详细信息
   async getFoodDetail({commit}, food_id) {
     let result = await regGetFoodDetail(food_id);
-    if(result.status === 200) {
-      commit('GETFOODDETAIL', result.data);
-    }
+    // if(result.status === 200) {
+    //   commit('GETFOODDETAIL', result.data);
+    // }
+    commit('GETFOODDETAIL', result);
   }
 }
 let getters = {

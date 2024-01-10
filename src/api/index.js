@@ -1,4 +1,4 @@
-import mockRequests from './mockRequest'
+import MockRequest from './mockRequest'
 import request from './request';
 // 服务器数据
 // http://172.20.137.141:8080/api/foods/firstclass
@@ -50,7 +50,7 @@ export const regGetFoodDetail = (food_id) => {
  * @returns Promise对象
  */
 export const registerAPI = ({ username, password, repassword }) => {
-  return request({
+  return requests({
     url: '/api/reg',
     method: 'post',
     data: {
@@ -80,8 +80,14 @@ export const loginAPI = ({ username, password }) => {
 /**
  * 请求食物名称接口
  */
+// export const reqDishesName = () =>{
+//   return requests({
+//     url:'/dishes/key',
+//     method:'get'
+//   })
+// }
 export const reqDishesName = () =>{
-  return mockRequests({
+  return MockRequest({
     url:'/dishes',
     method:'get'
   })
@@ -89,21 +95,36 @@ export const reqDishesName = () =>{
 /**
  * 请求模糊查询后的食物名称接口
  */
-export const reqDishesVageName = () =>{
-  return mockRequests({
-    url:'/search',
-    method:'post',
-    data: keyword
-  })
-}
+// export const reqDishesVageName = (keyword) =>{
+//   return requests({
+//     url:'/dishes/key',
+//     method:'get',
+//     data: keyword
+//   })
+// }
+// export const reqDishesVageName = (keyword) =>{
+//   return MockRequest({
+//     url:'/dishes/key',
+//     method:'get',
+//     data: keyword
+//   })
+// }
 /**
  * 请求餐次记录接口 传的参数是intake_record对象
  */
+// export const reqMeals = (intake_record) =>{
+//   return requests({
+//     url:'/meals/accept',
+//     method:'post',
+//     data: intake_record
+//   })
+// }
 export const reqMeals = (intake_record) =>{
-  return mockRequests({
+  return MockRequest({
     url:'/meals',
     method:'post',
     data: intake_record
   })
 }
+
 

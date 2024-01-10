@@ -14,7 +14,6 @@ const state = {
 const mutations = {
     GETMEALS(state, meals) {
         state.meals = meals;
-            // console.log('在修改仓库中的bannerList数据');
     }
 
 };
@@ -22,9 +21,7 @@ const mutations = {
 let actions = {
         // 获取餐次的数据
         async getMeals({ commit },formName) {
-            // console.log('在向服务器发送请求餐次记录的数据');
             let result = await reqMeals(formName);
-            console.log(result.data)
             if (result.code == 200) {
                 commit("GETMEALS", result.data);
             }
